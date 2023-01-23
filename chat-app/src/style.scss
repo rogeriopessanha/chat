@@ -1,0 +1,106 @@
+
+.form-Container{
+    background-color: rgb(255, 174, 128);
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .form-box{
+        background-color: #fff;
+        padding: 1.5rem 2rem;
+        border-radius: .8rem;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        align-items: center;
+
+        .logo{
+            color: #191919;
+            font-weight: 600;
+            font-size: 2rem;
+        }
+
+        .titulo{
+            color: #191919;
+            font-size: 1.8rem;
+            font-weight: 600;
+        }
+
+        form{
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+
+            input{
+                font-size: .9rem;
+                padding: 1rem;
+                border: none;
+                width: 18rem;
+                border-bottom: 1px solid #191919;
+
+                &::placeholder{
+                    color: #191919;
+                }
+            }
+
+            button{
+                background-color: #191919;
+                color: #fff;
+                padding: .7rem;
+                font-weight: bold;
+                border: none;
+                border-radius: 4rem;
+                cursor: pointer;
+                width: 9rem;
+                margin: auto;
+                font-size: 1rem;
+            }
+        }
+
+        p{
+            color: #191919;
+            font-size: 1.1rem;
+        }
+
+        label{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+
+            img{
+                width: 1.8rem;
+                margin-right: 1rem;
+                cursor: pointer;
+            }
+        }
+    }
+}
+
+.home{
+    background-color: #c2c1c1;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .container{
+        border: 1px solid #fff;
+        border-radius: .1rem;
+        width: 65%;
+        height: 80%;
+        display: flex;
+        overflow: hidden;
+
+        .barralateral{
+            flex: 1;
+            border-right: 1px solid #c2c1c1;
+            background-color: #191919;
+        }
+
+        .chat{
+            flex: 2;
+        }
+    }
+}
