@@ -1,6 +1,6 @@
 
 import React from "react";
-import Add from '../img/retrato.png'
+import Add from '../img/icons/retrato.png'
 
 const Registro = () => {
     return(
