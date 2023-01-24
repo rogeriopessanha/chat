@@ -192,6 +192,93 @@
 
         .chat{
             flex: 2;
+
+            .chatInfo{
+                height: 2rem;
+                background-color: #1f4d04;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                padding: .8rem;
+                color: lightgray;
+            }
+
+            .chatIcons{
+                display: flex;
+                gap: .7rem;
+                
+                img{
+                    height: 1.2rem;
+                    cursor: pointer;
+                }
+            }
+
+            .mensagens{
+                background-color: #e5e3e3;
+                padding: .5rem;
+                height: calc(100% - 8rem);
+
+                .mensagem{
+                    display: flex;
+                    gap: .7rem;
+
+                    .mensagemInfo{
+                        // width: 1rem;
+                        // height: 1rem;
+                        // border-radius: 50%;
+                        // object-fit: cover;
+                        border-radius: 50%;
+                        object-fit: cover;
+                        
+                        
+                    }
+
+                    .mensagemConteudo{
+
+                    }
+
+                }
+            }
+
+            .input{
+                height: 2rem;
+                background-color: #fff;
+                padding: 1rem;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+
+                input{
+                    width: 100%;
+                    border: none;
+                    outline: none;
+                    font-size: 1.2rem;
+
+                    &::placeholder{
+                        color: lightgray;
+                    }
+                }
+
+                .enviar{
+                    display: flex;
+                    align-items: center;
+                    gap: .5rem;
+
+                    img{
+                        height: 1rem;
+                        cursor: pointer;
+                    }
+
+                    button{
+                        border: none;
+                        border-radius: .5rem;
+                        padding: .6rem .8rem;
+                        color: #fff;
+                        background-color: #191919;
+                        cursor: pointer;
+                    }
+                }
+            }
         }
     }
 }
