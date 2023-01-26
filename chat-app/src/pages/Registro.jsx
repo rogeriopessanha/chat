@@ -1,34 +1,56 @@
 
-import React from "react";
+import React, { useState } from "react";
 import Add from '../img/icons/retrato.png'
-import { createUserWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../firebase";
+import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
+import { auth, db, storage } from "../firebase";
+import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
+import { doc, setDoc } from "firebase/firestore";
+
 
 const Registro = () => {
+    const [err, setErr] = useState(false)
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault()
         const nome = e.target[0].value
         const email = e.target[1].value
         const senha = e.target[2].value
         const file = e.target[3].files[0]
 
+        try {
 
+            const res = await createUserWithEmailAndPassword(auth, email, senha)
 
-        // const auth = getAuth();
-        createUserWithEmailAndPassword(auth, email, senha)
-            .then((userCredential) => {
-                // Signed in 
-                const user = userCredential.user;
+            const storageRef = ref(storage, nome);
 
-                console.log(user)
-                // ...
-            })
-            .catch((error) => {
-                const errorCode = error.code;
-                const errorMessage = error.message;
-                // ..
-            });
+            const uploadTask = uploadBytesResumable(storageRef, file);
+
+            uploadTask.on(
+
+                (error) => {
+                    setErr(true)
+                },
+                () => {
+
+                    getDownloadURL(uploadTask.snapshot.ref)
+                        .then(async (downloadURL) => {
+                            await updateProfile(res.user, {
+                                nome,
+                                photoURL: downloadURL,
+                            })
+                            await setDoc(doc(db, 'users', res.user.uid), {
+                                uid: res.user.uid,
+                                nome,
+                                email,
+                                photoURL: downloadURL
+                            })
+                        });
+                }
+            );
+        } catch (err) {
+            setErr(true)
+        }
+
     }
 
     return (
@@ -47,6 +69,7 @@ const Registro = () => {
                         <span>Adicione sua foto</span>
                     </label>
                     <button>Cadastre-se</button>
+                    {err && <span>Deu algum erro</span>}
                 </form>
                 <p>Já tem uma conta? Login</p>
             </div>
