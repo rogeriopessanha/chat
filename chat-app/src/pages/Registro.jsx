@@ -5,10 +5,12 @@ import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth, db, storage } from "../firebase";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { doc, setDoc } from "firebase/firestore";
+import { useNavigate } from "react-router-dom";
 
 
 const Registro = () => {
     const [err, setErr] = useState(false)
+    const navigate = useNavigate()
 
     const handleSubmit = async (e) => {
         e.preventDefault()
@@ -37,12 +39,15 @@ const Registro = () => {
                             photoURL: downloadURL,
                         })
 
-                        await setDoc(doc(db, "users", res.user.uid), {
+                        await setDoc(doc(db, "usuario", res.user.uid), {
                             uid: res.user.uid,
                             nome,
                             email,
-                            photoURL: downloadURL
+                            fotoURL: downloadURL
                         })
+
+                        await setDoc(doc(db, "usuarioChats", res.user.uid), {})
+                        navigate("/")
                     });
                 }
             );
