@@ -2,10 +2,11 @@
 import React, {useContext} from 'react'
 import { signOut } from 'firebase/auth'
 import { auth } from '../firebase'
-import { AuthContext } from './context/AuthContext'
+import { AuthContext } from '../context/AuthContext'
 
-export const BarraNavegacao = () => {
+const BarraNavegacao = () => {
   const {usuarioAtual} = useContext(AuthContext)
+
   return (
     <div className="barraNavegacao">
       <span className="logo">Bate Papo</span>

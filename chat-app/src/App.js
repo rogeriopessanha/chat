@@ -5,9 +5,10 @@ import Registro from './pages/Registro';
 import './style.scss'
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";  
 import { useContext } from 'react';
-import { AuthContext } from './components/context/AuthContext';
-function App() {
+import { AuthContext } from './context/AuthContext';
 
+
+function App() {
   const {usuarioAtual} = useContext(AuthContext)
 
   const ProtectedRoute = ({children}) =>{
