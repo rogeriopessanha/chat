@@ -14,7 +14,7 @@ const Registro = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        const nome = e.target[0].value
+        const displayName = e.target[0].value
         const email = e.target[1].value
         const senha = e.target[2].value
         const file = e.target[3].files[0]
@@ -23,7 +23,7 @@ const Registro = () => {
 
             const res = await createUserWithEmailAndPassword(auth, email, senha)
 
-            const storageRef = ref(storage, nome);
+            const storageRef = ref(storage, displayName);
 
             const uploadTask = uploadBytesResumable(storageRef, file);
 
@@ -35,15 +35,15 @@ const Registro = () => {
 
                     getDownloadURL(uploadTask.snapshot.ref).then(async (downloadURL) => {
                         await updateProfile(res.user, {
-                            nome,
+                            displayName,
                             photoURL: downloadURL,
-                        })
+                        });
 
                         await setDoc(doc(db, "usuario", res.user.uid), {
                             uid: res.user.uid,
-                            nome,
+                            displayName,
                             email,
-                            fotoURL: downloadURL
+                            photoURL: downloadURL
                         })
 
                         await setDoc(doc(db, "usuarioChats", res.user.uid), {})
@@ -66,7 +66,7 @@ const Registro = () => {
                     <input type="text" placeholder="Nome" />
                     <input type="email" placeholder="Email" />
                     <input type="password" placeholder="Senha" />
-                    <input style={{ display: 'none' }} type="file" id="file" />
+                    <input required style={{ display: 'none' }} type="file" id="file" />
                     <label htmlFor="file">
                         <img src={Add} alt="" />
                         <span>Adicione sua foto</span>

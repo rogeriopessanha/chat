@@ -9,10 +9,10 @@ import { AuthContext } from './context/AuthContext';
 
 
 function App() {
-  const {usuarioAtual} = useContext(AuthContext)
+  const {currentUser} = useContext(AuthContext)
 
   const ProtectedRoute = ({children}) =>{
-    if (!usuarioAtual) {
+    if (!currentUser) {
       return <Navigate to='/login'/>
     }
 

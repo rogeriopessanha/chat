@@ -5,14 +5,14 @@ import { auth } from '../firebase'
 import { AuthContext } from '../context/AuthContext'
 
 const BarraNavegacao = () => {
-  const {usuarioAtual} = useContext(AuthContext)
+  const {currentUser} = useContext(AuthContext)
 
   return (
     <div className="barraNavegacao">
       <span className="logo">Bate Papo</span>
       <div className="usuario">
-        <img src={usuarioAtual.fotoURL} alt="" />
-        <span>{usuarioAtual.nome}</span>
+        <img src={currentUser.photoURL} alt="" />
+        <span>{currentUser.displayName}</span>
         <button onClick={() => signOut(auth)}>Sair</button>
       </div>
     </div>
