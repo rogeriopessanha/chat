@@ -26,31 +26,29 @@ const Registro = () => {
             const uploadTask = uploadBytesResumable(storageRef, file);
 
             uploadTask.on(
-
                 (error) => {
                     setErr(true)
                 },
                 () => {
 
-                    getDownloadURL(uploadTask.snapshot.ref)
-                        .then(async (downloadURL) => {
-                            await updateProfile(res.user, {
-                                nome,
-                                photoURL: downloadURL,
-                            })
-                            await setDoc(doc(db, 'users', res.user.uid), {
-                                uid: res.user.uid,
-                                nome,
-                                email,
-                                photoURL: downloadURL
-                            })
-                        });
+                    getDownloadURL(uploadTask.snapshot.ref).then(async (downloadURL) => {
+                        await updateProfile(res.user, {
+                            nome,
+                            photoURL: downloadURL,
+                        })
+
+                        await setDoc(doc(db, "users", res.user.uid), {
+                            uid: res.user.uid,
+                            nome,
+                            email,
+                            photoURL: downloadURL
+                        })
+                    });
                 }
             );
         } catch (err) {
             setErr(true)
         }
-
     }
 
     return (
