@@ -3,7 +3,7 @@
  import Pesquisar from './Pesquisar'
  import Chats from './Chats'
  
- export const BarraLateral = () => {
+ const BarraLateral = () => {
    return (
      <div className="barraLateral">
       <BarraNavegacao/>
