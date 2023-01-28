@@ -28,10 +28,10 @@ const Chats = () => {
       {Object.entries(chats)?.map((chat) =>(
 
       <div className="usuarioChat" key={chat[0]}>
-        <img src={chat[1].userInfo.photoURL} alt="" />
+        <img src={chat[1].usuarioChatInfo.photoURL} alt="" />
         <div className="usuarioChatInfo">
-          <span>{chat[1].userInfo.displayName}</span>
-          <p>{chat[1].userInfo.lastMessage?.text}</p>
+          <span>{chat[1].usuarioChatInfo.displayName}</span>
+          <p>{chat[1].usuarioChatInfo.lastMessage?.text}</p>
         </div>
       </div>
       ))}
