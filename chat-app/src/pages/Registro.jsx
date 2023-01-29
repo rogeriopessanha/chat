@@ -10,9 +10,11 @@ import { useNavigate, Link } from "react-router-dom";
 
 const Registro = () => {
     const [err, setErr] = useState(false)
+    const [loading, setLoading] = useState(false);
     const navigate = useNavigate()
 
     const handleSubmit = async (e) => {
+        setLoading(true);
         e.preventDefault()
         const displayName = e.target[0].value
         const email = e.target[1].value
@@ -23,38 +25,41 @@ const Registro = () => {
 
             const res = await createUserWithEmailAndPassword(auth, email, senha)
 
-            const storageRef = ref(storage, displayName);
+            const date = new Date().getTime();
+            const storageRef = ref(storage, `${displayName + date}`);
 
-            const uploadTask = uploadBytesResumable(storageRef, file);
 
-            uploadTask.on(
-                (error) => {
-                    setErr(true)
-                },
-                () => {
-
-                    getDownloadURL(uploadTask.snapshot.ref).then(async (downloadURL) => {
+            await uploadBytesResumable(storageRef, file).then(() => {
+                getDownloadURL(storageRef).then(async (downloadURL) => {
+                    try {
+                        
                         await updateProfile(res.user, {
                             displayName,
                             photoURL: downloadURL,
                         });
-
+                        
                         await setDoc(doc(db, "usuario", res.user.uid), {
                             uid: res.user.uid,
                             displayName,
                             email,
-                            photoURL: downloadURL
-                        })
+                            photoURL: downloadURL,
+                        });
 
-                        await setDoc(doc(db, "usuarioChats", res.user.uid), {})
-                        navigate("/")
-                    });
-                }
-            );
+                        
+                        await setDoc(doc(db, "usuarioChats", res.user.uid), {});
+                        navigate("/");
+                    } catch (err) {
+                        console.log(err);
+                        setErr(true);
+                        setLoading(false);
+                    }
+                });
+            });
         } catch (err) {
-            setErr(true)
+            setErr(true);
+            setLoading(false);
         }
-    }
+    };
 
     return (
         <div className="form-Container">
@@ -71,7 +76,8 @@ const Registro = () => {
                         <img src={Add} alt="" />
                         <span>Adicione sua foto</span>
                     </label>
-                    <button>Cadastre-se</button>
+                    <button disabled={loading}>Cadastre-se</button>
+                    {loading && "Fazendo upload e compactando a imagem, aguarde..."}
                     {err && <span>Deu algum erro</span>}
                 </form>
                 <p>Já tem uma conta? <Link to='/login'>Login</Link></p>

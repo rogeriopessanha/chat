@@ -10,10 +10,11 @@ import {
   doc,
   updateDoc,
   serverTimestamp,
-  getDoc,
-} from "firebase/firestore";
+  getDoc, } from "firebase/firestore";
 import { db } from "../firebase";
 import { AuthContext } from "../context/AuthContext";
+
+
 const Pesquisar = () => {
   const [username, setUsername] = useState("");
   const [user, setUser] = useState(null);
@@ -50,10 +51,9 @@ const Pesquisar = () => {
       const res = await getDoc(doc(db, "chats", combinedId));
 
       if (!res.exists()) {
-        //create a chat in chats collection
+
         await setDoc(doc(db, "chats", combinedId), { mensagens: [] });
 
-        //create user chats
         await updateDoc(doc(db, "usuarioChats", currentUser.uid), {
           [combinedId + ".usuarioChatInfo"]: {
             uid: user.uid,
