@@ -8,16 +8,16 @@ import { db } from '../firebase'
 const Chats = () => {
 
   const [chats, setChats] = useState([])
-  const {currentUser} = useContext(AuthContext)
-  const {dispatch} = useContext(ChatContext)
+  const { currentUser } = useContext(AuthContext)
+  const { dispatch } = useContext(ChatContext)
 
-  useEffect(() =>{
-    const getChats = ()=>{
-      const unsub = onSnapshot(doc(db, 'usuarioChats', currentUser.uid), (doc) =>{
+  useEffect(() => {
+    const getChats = () => {
+      const unsub = onSnapshot(doc(db, 'usuarioChats', currentUser.uid), (doc) => {
         setChats(doc.data())
       })
-  
-      return() => {
+
+      return () => {
         unsub()
       }
     }
@@ -25,28 +25,29 @@ const Chats = () => {
     currentUser.uid && getChats()
   }, [currentUser.uid])
 
-  const handleSelect = (u) =>{
-    dispatch({type:'CHANGE_USER', payload: u})
+  const handleSelect = (u) => {
+    dispatch({ type: 'CHANGE_USER', payload: u })
   }
 
   return (
     <div className="chats">
-      {Object.entries(chats)?.sort((a,b)=>b[1].date - a[1].date).map((chat) =>(
+      {Object.entries(chats)?.sort((a, b) => b[1].date - a[1].date).map((chat) => (
 
-      <div 
-      className="usuarioChat" 
-      key={chat[0]} 
-      onClick={()=> handleSelect(chat[1].usuarioChatInfo)}>
+        <div
+          className="usuarioChat"
+          key={chat[0]}
+          onClick={() => handleSelect(chat[1].usuarioChatInfo)}>
 
-        <img src={chat[1].usuarioChatInfo.photoURL} alt="" />
-
-        <div className="usuarioChatInfo">
-
-          <span>{chat[1].usuarioChatInfo.displayName}</span>
-
+          <img src={chat[1].usuarioChatInfo.photoURL} alt="" />
+          <span>{chat[1].usuarioChatInfo.displayName} </span>
           <p>{chat[1].lastMessage?.text}</p>
+          <div className="usuarioChatInfo">
+
+            {/* <span>{chat[1].usuarioChatInfo.displayName}</span> */}
+
+            {/* <p>{chat[1].lastMessage?.text}</p> */}
+          </div>
         </div>
-      </div>
       ))}
     </div>
   )

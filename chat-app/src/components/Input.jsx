@@ -1,7 +1,6 @@
 
 import React, { useContext, useState } from 'react'
 import Img from "../img/icons/foto.png";
-// import Grampo from '../img/icons/grampo.png'
 import { AuthContext } from '../context/AuthContext'
 import { ChatContext } from '../context/ChatContext'
 import {
@@ -84,7 +83,6 @@ const Input = () => {
         value={text} />
 
       <div className="enviar">
-        {/* <img src={Grampo} alt="" /> */}
 
         <input type="file"
           style={{ display: 'none' }}
