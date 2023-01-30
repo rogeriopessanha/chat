@@ -35,7 +35,7 @@ const Login = () => {
                     <button>Login</button>
                     {err && <span>Deu algum erro</span>}
                 </form>
-                <p>Não tem uma conta? <Link to='/registro'>Cadastre-se</Link></p >
+                <p>Não tem uma conta? <Link to='/registro' className="link">Cadastre-se</Link></p >
             </div>
         </div>
     )

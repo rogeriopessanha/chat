@@ -79,7 +79,7 @@ const Input = () => {
 
   return (
     <div className="input">
-      <input type="text" placeholder='Escreva sua mensagem' onChange={(e) => setText(e.target.value)}
+      <input type="text" placeholder='Mensagens' onChange={(e) => setText(e.target.value)}
         value={text} />
 
       <div className="enviar">

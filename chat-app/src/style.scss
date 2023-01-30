@@ -23,7 +23,6 @@
     }
 }
 
-$darkColor: #2f2d52;
 
 html {
     font-size: 82.5%;
@@ -194,7 +193,7 @@ html {
                         background-color: #a5ffe7fd;
                         color: #000;
                         font-size: 1rem;
-                        height: 2rem;
+                        height: 1.4rem;
                         width: 3rem;
                         border: none;
                         border-radius: 0.4rem;
@@ -345,6 +344,11 @@ html {
                                 color: #fff;
                                 border-radius: 2rem 0rem 2rem 2rem;
                                 word-break: break-all;
+
+                                @include mobile {
+                                    font-size: .8rem;
+                                }
+                                
                             }
                         }
                     }
@@ -362,6 +366,10 @@ html {
                         border-radius: 0rem 2rem 2rem 2rem;
                         max-width: max-content;
                         word-break: break-all;
+
+                        @include mobile {
+                            font-size: .9rem;
+                        }
                     }
                     img {
                         width: 25%;
@@ -373,13 +381,18 @@ html {
                     flex-direction: column;
                     color: gray;
                     font-weight: 300;
-                    font-size: 1rem;
+                    font-size: .9rem;
 
                     img {
                         width: 2.5rem;
                         height: 2.5rem;
                         border-radius: 50%;
                         object-fit: cover;
+
+                        @include mobile {
+                            width: 2rem;
+                        height: 2rem;
+                        }
                     }
                 }
             }
@@ -397,8 +410,8 @@ html {
                     border: none;
                     outline: none;
                     font-size: 1rem;
-                    padding: 0.4rem;
-                    margin-right: 1rem;
+                    padding: 0.3rem;
+                    margin-right: .4rem;
 
                     &::placeholder {
                         color: #d3d3d3;
@@ -417,7 +430,7 @@ html {
                         margin-top: 0.4rem;
 
                         @include mobile {
-                            height: 0.8rem;
+                            height: 1rem;
                         }
                     }
 
@@ -436,8 +449,8 @@ html {
                         }
                         
                         @include mobile {
-                            font-size: 0.6rem;
-                            width: 2.2rem;
+                            font-size: 0.7rem;
+                            width: 2.6rem;
                             padding: 0.3rem;
                         }
                     }

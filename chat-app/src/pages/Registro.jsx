@@ -80,7 +80,7 @@ const Registro = () => {
                     {loading && "Fazendo upload e compactando a imagem, aguarde..."}
                     {err && <span>Deu algum erro</span>}
                 </form>
-                <p>Já tem uma conta? <Link to='/login'>Login</Link></p>
+                <p>Já tem uma conta? <Link to='/login' className="link">Login</Link></p>
             </div>
         </div>
     )
