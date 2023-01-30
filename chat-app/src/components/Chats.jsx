@@ -41,12 +41,13 @@ const Chats = () => {
           <img src={chat[1].usuarioChatInfo.photoURL} alt="" />
           <span>{chat[1].usuarioChatInfo.displayName} </span>
           <p>{chat[1].lastMessage?.text}</p>
-          <div className="usuarioChatInfo">
 
-            {/* <span>{chat[1].usuarioChatInfo.displayName}</span> */}
+          {/* <div className="usuarioChatInfo">
 
-            {/* <p>{chat[1].lastMessage?.text}</p> */}
-          </div>
+            <span>{chat[1].usuarioChatInfo.displayName}</span>
+
+            <p>{chat[1].lastMessage?.text}</p>
+          </div> */}
         </div>
       ))}
     </div>
