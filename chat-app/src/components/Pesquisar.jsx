@@ -83,8 +83,7 @@ const Pesquisar = () => {
         <input
           type="text"
           placeholder="Procure seus contatos"
-          // onKeyDown={handleKey}
-          onKeyUp={handleKey}
+          onKeyDown={handleKey}
           onChange={(e) => setUsername(e.target.value)}
           value={username}
         />
