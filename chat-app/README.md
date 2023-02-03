@@ -36,7 +36,7 @@ Projeto responsivo, funcionando tanto em desktop, tablet e mobile.
 </h1>
 
 <h1 align="center">
-  <img width="550px" height="550px" src="https://github.com/rogeriopessanha/chat/blob/main/chat-app/src/img/readme-info/chat-completo.gif" />
+  <img width="650px" height="650px" src="https://github.com/rogeriopessanha/chat/blob/main/chat-app/src/img/readme-info/chat-completo.gif" />
 </h1>
 
 
