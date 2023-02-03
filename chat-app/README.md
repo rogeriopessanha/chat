@@ -1,4 +1,4 @@
-# projeto Chat-app
+# Projeto Chat-app
 
 - Deploy realizado na vercel. 
 Link do site ativo: [Bate papo](https://bate-papo-online.vercel.app/registro)
